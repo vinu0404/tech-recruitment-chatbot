@@ -18,7 +18,7 @@ def interview_page():
     
     questions_data = load_questions_from_json()
     if not questions_data:
-        st.error("❌ No questions found. Please restart the interview process.")
+        st.error("❌ No question found. Please restart the interview process.")
         if st.button("🏠 Return to Welcome"):
             st.session_state.page = 'welcome'
             st.rerun()
