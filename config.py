@@ -7,8 +7,6 @@ LAYOUT = "wide"
 INITIAL_SIDEBAR_STATE = "collapsed"
 
 # Question settings
-MIN_QUESTIONS = 4
-MAX_QUESTIONS = 7
 NUM_QUESTIONS = 5
 
 # File paths
