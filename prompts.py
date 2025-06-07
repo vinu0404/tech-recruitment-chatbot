@@ -38,4 +38,4 @@ def get_evaluation_prompt(question, answer, tech_stack, position):
 def get_evaluation_system_prompt():
     return """You are an expert technical interviewer. 
     Provide brief, encouraging feedback on the candidate's answer. 
-    Keep it professional and constructive. Maximum 2-3 sentences."""
+    Keep it professional and constructive. Maximum 1-2 sentences."""
