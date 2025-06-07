@@ -154,8 +154,8 @@ The app follows a linear flow across three pages:
 
 ## Live Demo
 
-- **Deployed Link**: [TalentScout on Render](https://talentscout.streamlit.app)
-- **Video Demo**: [Watch the Demo](https://youtu.be/placeholder).
+- **Deployed Link**: [TalentScout on Render](https://tech-recruitment-chatbot.onrender.com)
+- **Video Demo**: [Watch the Demo](https://www.loom.com/share/becb6fc375524966940b1c7e91e87b02?sid=f6d34a85-4c24-47fa-80c8-356863e73896).
 
 
 ## Challenges & Solutions
