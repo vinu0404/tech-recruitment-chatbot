@@ -14,6 +14,7 @@
 - [Live Demo](#live-demo)
 - [Challenges & Solutions](#challenges--solutions)
 - [Why No LangChain?](#why-no-langchain)
+- [Bonus Features](#bonus-features)
 
 
 ## Features
@@ -21,7 +22,7 @@
 - **Welcome Page**: Engaging introduction with Inter and Open Sans fonts.
 - **Candidate Form**: Collects name, email, phone, experience, position, and tech stack with validation.
 - **Interactive Interview**: 5 technical questions tailored to the candidate's tech stack, with skip/submit options.
-- **Real-Time Feedback**: Grok evaluates answers and provides feedback.
+- **Real-Time Feedback**: Groq evaluates answers and provides feedback.
 - **Progress Tracking**: Progress bar showing question count (e.g., "3/5").
 - **Session Management**: Streamlit session state and JSON storage for context, with LLM memory for interview flow.
 - **Modern UI**: Wide layout, custom CSS, hidden sidebar, and responsive design.
@@ -34,12 +35,12 @@ The project uses a modular architecture for clean code organization. Below is th
 ```
 ├── .env                    # Environment variables (GROQ_API_KEY)
 ├── README.md               # Project documentation
-├── config.py               # App configuration 
+├── config.py               # App configuration
 ├── prompts.py              # LLM prompt templates
 ├── app.py                  # Streamlit app entry point
 ├── utils/                  # Utility modules
 │   ├── file_handler.py     # JSON file operations
-│   ├── llm_handler.py      # Grok API integration
+│   ├── llm_handler.py      # Groq API integration
 │   ├── validators.py       # Email/phone validation
 │   ├── session_manager.py  # Session state initialization
 ├── pages/                  # Page-specific logic
@@ -57,7 +58,7 @@ The project uses a modular architecture for clean code organization. Below is th
 - **utils/**: Handles file operations, LLM calls, validation, and session management.
 - **styles/**: Custom CSS with gradients and fonts (Inter/Open Sans).
 - **config.py**: Defines settings like `NUM_QUESTIONS=5`.
-- **prompts.py**: Manages Grok prompts for questions and feedback.
+- **prompts.py**: Manages Groq prompts for questions and feedback.
 
 ## Query Flow
 
@@ -71,7 +72,7 @@ The app follows a linear flow across three pages:
    - Collects candidate details with validation.
    - On submission:
      - Stores data in `st.session_state.candidate_info`.
-     - Generates 5 questions using Grok (`utils/llm_handler.py`).
+     - Generates 5 questions using Groq (`utils/llm_handler.py`).
      - Saves questions to `generated_questions.json` (`utils/file_handler.py`).
      - Sets `st.session_state.page = 'interview'`.
 
@@ -81,7 +82,7 @@ The app follows a linear flow across three pages:
    - For each question:
      - Presents question (e.g., "Question 1 of 5").
      - Accepts user input (skip/submit).
-     - Evaluates answers with Grok and shows feedback.
+     - Evaluates answers with Groq and shows feedback.
      - Updates `current_question_index` in JSON/session state.
    - After 5 questions, displays completion message and "Return to Welcome" button.
    - Resets session and JSON on return.
@@ -102,10 +103,10 @@ The app follows a linear flow across three pages:
 
 ### Prerequisites
 
-- Python 3.10
+- Python 3.10+
 - Git
 - Text editor (e.g., VS Code)
-- Groq API(Free)
+- Groq API key (free)
 
 ### Installation
 
@@ -144,29 +145,29 @@ The app follows a linear flow across three pages:
    - Open `http://localhost:8501`.
    - Navigate through welcome, form, and interview.
 
+### Troubleshooting
+
+- **API Key Error**: Verify `GROQ_API_KEY` in `.env`.
+- **IndexError**: Delete `generated_questions.json` and restart.
+- **Streamlit Version**: Ensure Streamlit 1.36.0+ for hidden sidebar.
+- **LLM Issues**: Check `form_page.py` debug output.
 
 ## Live Demo
 
-- **Deployed Link**: [TalentScout on RENDER](https://talentscout.streamlit.app) .
+- **Deployed Link**: [TalentScout on Render](https://talentscout.streamlit.app)
 - **Video Demo**: [Watch the Demo](https://youtu.be/placeholder).
-
 
 
 ## Challenges & Solutions
 
-### 1. Grok Output in JSON Format
-- **Problem**: GroQ returned questions in JSON, complicating parsing for plain text.
+### 1. Groq Output in JSON Format
+- **Problem**: Groq returned questions in JSON, complicating parsing for plain text.
 - **Solution**: Updated `prompts.py` to request numbered lists. Added regex parsing in `form_page.py` with generic question fallbacks.
 
 ### 2. Lack of Session Management and Memory
 - **Problem**: No context retention, leading to disjointed interviews.
 - **Solution**: Used Streamlit session state (`utils/session_manager.py`), JSON storage (`utils/file_handler.py`), and LLM chat history in `interview_page.py` for seamless flow.
 
-
-
-### 3. IndexError in Interview Page
-- **Problem**: Invalid question index caused crashes.
-- **Solution**: Added validation in `interview_page.py` and `file_handler.py`, ensured 5 questions in `form_page.py`.
 
 ## Why No LangChain?
 
@@ -223,11 +224,17 @@ response = client.chat.completions.create(
 
 ### Why Direct API Suits This Use Case
 
-- Simple conversational interface with single LLM (Grok).
+- Simple conversational interface with single LLM (Groq).
 - Straightforward prompt-response pattern.
 - Custom logic for interview flow (`interview_page.py`, `form_page.py`).
 - Streamlit manages UI state efficiently.
 
 The app achieves context memory and adaptive questioning through custom code, avoiding framework overhead.
 
-#### Built with 😎 by Vinu for the tech hiring community.
+## Bonus Features
+
+- **Multilingual Support**: The app leverages the Meta-Llama-4-Scout model, trained on multilingual data for diverse language support ([Oracle Docs](https://docs.oracle.com/en-us/iaas/Content/generative-ai/meta-llama-4-scout.htm#:~:text=Multilingual%20Support%3A%20Trained%20on%20data,understanding%20is%20limited%20to%20English)).
+- **Personalized Responses**: Enhanced evaluation prompts in `prompts.py` use candidate history (tech stack, experience) to tailor feedback, improving interview relevance.
+- **Sentiment Analysis**: Integrated into the evaluation prompt to gauge candidate emotions during the interview, enabling empathetic and supportive responses.
+
+*Built with 😎 by Vinu for the tech hiring community.*
