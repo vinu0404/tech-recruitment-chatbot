@@ -193,7 +193,8 @@ def interview_page():
                         client,
                         questions[current_index],
                         user_input,
-                        candidate['tech_stack']
+                        candidate['tech_stack'],
+                        candidate['position']
                     )
                     
                     st.session_state.chat_history.append({

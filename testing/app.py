@@ -6,7 +6,7 @@ import re
 import os
 
 # Configuration
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "API "
 MODEL_ID = "meta-llama/llama-4-scout-17b-16e-instruct"
 NUM_QUESTIONS = 5
 
