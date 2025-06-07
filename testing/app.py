@@ -25,7 +25,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for better UI/UX with improved fonts and contrast
+# Custom CSS for better UI/UX with improved fonts and contras
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600&family=Inter:wght@500&family=Open+Sans:wght@400&display=swap');
