@@ -33,7 +33,7 @@ def load_questions_from_json():
                 if not isinstance(data.get('questions'), list) or not data.get('total_questions'):
                     st.error("Invalid questions data structure.")
                     return None
-                # Ensure current_question_index is within bounds
+                # Ensure current_question_index  within bounds
                 if data.get('current_question_index', 0) >= len(data['questions']):
                     data['current_question_index'] = 0
                     with open(QUESTIONS_FILE, 'w') as f:
