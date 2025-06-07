@@ -8,7 +8,7 @@ from datetime import datetime
 import re
 
 def generate_technical_questions(client, tech_stack, experience_level,position):
-    """Generate technical questions based on tech stack and experience"""
+    """Generate technical questions based on tech stack,positions experience"""
     system_prompt = get_question_generation_system_prompt()
     prompt = get_question_generation_prompt(tech_stack, experience_level,NUM_QUESTIONS,position)
     
