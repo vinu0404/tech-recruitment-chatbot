@@ -1,7 +1,7 @@
 import streamlit as st
 
 def initialize_session_state():
-    """Initialize session state variables"""
+    """Initialize session state variable"""
     if 'page' not in st.session_state:
         st.session_state.page = 'welcome'
     if 'candidate_info' not in st.session_state:
